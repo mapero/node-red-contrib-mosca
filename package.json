@@ -1,0 +1,24 @@
+
+{
+    "name"         : "node-red-node-mosca",
+    "version"      : "0.0.1",
+    "description"  : "A mqtt broker as node",
+    "dependencies": {
+        "mosca": "^0.28.1",
+    },
+    "license": "MIT",
+    "repository" : {
+        "type":"git",
+        "url":"https://github.com/mapero/node-red-contrib-mosca.git"
+    },
+    "keywords": [ "node-red", "mosca", "mqtt" ],
+    "node-red"     : {
+        "nodes": {
+            "mosca": "mosca.js"
+        }
+    },
+    "author": {
+        "name": "Jochen Scheib",
+        "email": "webmaster@mapero.de"
+    }
+}
