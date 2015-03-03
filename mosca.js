@@ -14,74 +14,71 @@
  * limitations under the License.
  **/
  
- module.exports = function(RED) {
-    "use strict";
-    var mosca = require('mosca');
+var RED = require(process.env.NODE_RED_HOME+"/red/red");
+var mosca = require('mosca');
 
-    function MoscaInNode(n) {
-      RED.nodes.createNode(this,n);
-      this.port = n.port;
-      var moscaSettings = {
-    		  port: this.port
-      };
-      var node = this;
-      node.log("Binding mosca mqtt server on port: "+ this.port);
-      var server = new mosca.Server(moscaSettings);
+function MoscaInNode(n) {
+  RED.nodes.createNode(this,n);
+  this.port = n.port;
+  var moscaSettings = {
+		  port: this.port
+  };
+  var node = this;
+  node.log("Binding mosca mqtt server on port: "+ this.port);
+  var server = new mosca.Server(moscaSettings);
 
-      server.on('clientConnected', function(client) {
-    	  var msg = {
-    			  topic: "clientConnected",
-    			  payload: client
-    	  };
-    	  node.send(msg);
-      });
-      
-      server.on('clientDisconnected', function(client) {
-    	 var msg = {
-    			 topic: "clientDisconnected",
-    			 payload: client
-    	 };
-    	 node.send(msg);
-      });
-      
-      server.on('published', function(packet, client) {
-    	 var msg = {
-    			 topic: "published",
-    			 payload: {
-    				 packet: packet,
-    				 client: client
-    			 }
-    	 };
-    	 node.send(msg);
-      });
-      
-      server.on('subscribed', function(topic, client) {
-    	  var msg = {
-    			  topic: "subscribed",
-    			  payload: {
-    				  topic: topic,
-    				  client: client
-    			  }
-    	  };
-    	  node.send(msg);
-      });
-      
-      server.on('unsubscribed', function(topic, client) {
-    	  var msg = {
-    			  topic: "unsubscribed",
-    			  payload: {
-    				  topic: topic,
-    				  client: client
-    			  }
-    	  };
-    	  node.send(msg);
-      });
-      
-      this.on('close', function() {
-    	 node.log("Unbinding mosca mqtt server from port: "+ this.port);
-    	 server.close(); 
-      });
-    }
-    RED.nodes.registerType("mosca in", MoscaInNode);
-
+  server.on('clientConnected', function(client) {
+	  var msg = {
+			  topic: "clientConnected",
+			  payload: client
+	  };
+	  node.send(msg);
+  });
+  
+  server.on('clientDisconnected', function(client) {
+	 var msg = {
+			 topic: "clientDisconnected",
+			 payload: client
+	 };
+	 node.send(msg);
+  });
+  
+  server.on('published', function(packet, client) {
+	 var msg = {
+			 topic: "published",
+			 payload: {
+				 packet: packet,
+				 client: client
+			 }
+	 };
+	 node.send(msg);
+  });
+  
+  server.on('subscribed', function(topic, client) {
+	  var msg = {
+			  topic: "subscribed",
+			  payload: {
+				  topic: topic,
+				  client: client
+			  }
+	  };
+	  node.send(msg);
+  });
+  
+  server.on('unsubscribed', function(topic, client) {
+	  var msg = {
+			  topic: "unsubscribed",
+			  payload: {
+				  topic: topic,
+				  client: client
+			  }
+	  };
+	  node.send(msg);
+  });
+  
+  this.on('close', function() {
+	 node.log("Unbinding mosca mqtt server from port: "+ this.port);
+	 server.close(); 
+  });
 }
+RED.nodes.registerType("mosca in", MoscaInNode);

@@ -1,10 +1,10 @@
-
 {
-    "name"         : "node-red-node-mosca",
-    "version"      : "0.0.1",
+    "name"         : "node-red-contrib-mosca",
+    "version"      : "0.0.3",
     "description"  : "A mqtt broker as node",
     "dependencies": {
-        "mosca": "^0.28.1",
+        "mosca": "0.28.1",
+        "bson": "0.2.19"
     },
     "license": "MIT",
     "repository" : {
