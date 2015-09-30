@@ -20,8 +20,8 @@
         <input type="text" id="node-input-port">
     </div>
     <div class="form-row">
-        <label for="node-input-status"><i class="fa fa-globe"></i> Status</label>
-        <input type="checkbox" id="node-input-status">
+        <label for="node-input-dburl"><i class="fa fa-globe"></i> DB Url</label>
+        <input type="text" id="node-input-dburl" placeholder="mongodb://localhost:27017/mqtt">
     </div>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
@@ -40,7 +40,8 @@
         category: 'input',
         defaults: {
         	port: {value:1883,required:true,validate:RED.validators.number()},
-            name: {value:""}
+            name: {value:""},
+            dburl: {value:"", required:false}
         },
         color:"#d8bfd8",
         inputs:0,
