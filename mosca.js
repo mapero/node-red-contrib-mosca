@@ -89,7 +89,7 @@ function MoscaInNode(n) {
 	});
 	if (this.dburl) {
 		var onPersistenceReady = function () {
-			node.log('[Mosca] Persistence Ready');
+			node.log('Persistence Ready');
 			persistence.wire(server);
 		}
 
