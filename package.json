@@ -17,7 +17,7 @@
   ],
   "node-red": {
     "nodes": {
-      "mosca": "mosca.js"
+      "mosca-mqtt-broker": "mosca.js"
     }
   },
   "author": {
