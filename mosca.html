@@ -16,8 +16,12 @@
 
 <script type="text/x-red" data-template-name="mosca in">
     <div class="form-row">
-        <label for="node-input-port"><i class="fa fa-globe"></i> Port</label>
-        <input type="text" id="node-input-port">
+        <label for="node-input-mqtt_port"><i class="fa fa-globe"></i> MQTT port</label>
+        <input type="text" id="node-input-mqtt_port" placeholder="leave blank to disable">
+    </div>
+    <div class="form-row">
+        <label for="node-input-mqtt_port"><i class="fa fa-globe"></i> MQTT WS port</label>
+        <input type="text" id="node-input-mqtt_ws_port" placeholder="leave blank to disable">
     </div>
     <div class="form-row">
         <label for="node-input-dburl"><i class="fa fa-globe"></i> DB Url</label>
@@ -39,7 +43,8 @@
     RED.nodes.registerType('mosca in',{
         category: 'input',
         defaults: {
-        	port: {value:1883,required:true,validate:RED.validators.number()},
+        	mqtt_port: {value:1883, validate:RED.validators.number()},
+        	mqtt_ws_port: {value:8080, validate:RED.validators.number()},
             name: {value:""},
             dburl: {value:"", required:false}
         },
