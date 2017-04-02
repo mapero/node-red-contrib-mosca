@@ -10,8 +10,9 @@ npm install -g node-red-contrib-mqtt-broker
 ```
 ## Flows
 Once you just put this node on Node-RED and hit deploy button, MQTT Broker will run on your Node-RED.
+
 ![flows](flows.png)
 
-##Original source
+## Original project
+To register Node-RED library, README.md was added from the following project. 
 https://github.com/mapero/node-red-contrib-mosca
-README.md was added from the project to register Node-RED library. 
