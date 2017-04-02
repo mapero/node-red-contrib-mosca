@@ -14,5 +14,4 @@ Once you just put this node on Node-RED and hit deploy button, MQTT Broker will 
 ![flows](flows.png)
 
 ## Original project
-To register Node-RED library, README.md was added from the following project. 
-https://github.com/mapero/node-red-contrib-mosca
+To register Node-RED library, README.md was added from [node-red-contrib-mosca](https://github.com/mapero/node-red-contrib-mosca) project.
