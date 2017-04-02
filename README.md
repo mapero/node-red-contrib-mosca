@@ -8,6 +8,9 @@ Once you just put this node on Node-RED and hit deploy button, MQTT Broker will 
 
 ![flows](https://github.com/zuhito/node-red-contrib-mqtt-broker/raw/master/flows.png)
 
+You need to set "localhost" in MQTT-in and MQTT-out properties as follows.
+![flows](https://github.com/zuhito/node-red-contrib-mqtt-broker/raw/master/setting.png)
+
 ## Install
 Run the following npm command in your Node-RED environment.
 ```
