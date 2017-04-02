@@ -1,5 +1,5 @@
 {
-  "name": "node-red-contrib-mosca",
+  "name": "node-red-contrib-mqtt-broker",
   "version": "0.1.1",
   "description": "A mqtt broker as node",
   "dependencies": {
@@ -8,7 +8,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mapero/node-red-contrib-mosca.git"
+    "url": "https://github.com/zuhito/node-red-contrib-mqtt-broker.git"
   },
   "keywords": [
     "node-red",
