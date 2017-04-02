@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-mqtt-broker",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A mqtt broker as node",
   "dependencies": {
     "mosca": "0.28.1"
@@ -21,7 +21,12 @@
     }
   },
   "author": {
-    "name": "Jochen Scheib",
-    "email": "webmaster@mapero.de"
-  }
+    "name": "zuhito",
+    "email": "zuhito@hotmail.co.jp"
+  },
+  "contributors": [
+    {
+      "name": "Jochen Scheib"
+    }
+  ]
 }
