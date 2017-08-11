@@ -17,6 +17,3 @@ Run the following npm command in your Node-RED environment.
 ```
 npm install -g node-red-contrib-mqtt-broker
 ```
-
-## Original project
-To register Node-RED library, README.md was added from [node-red-contrib-mosca](https://github.com/mapero/node-red-contrib-mosca) project. The discussion to decide main stream is welcomed.
