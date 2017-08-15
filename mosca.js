@@ -22,6 +22,9 @@ function MoscaInNode(n) {
     this.dburl = n.dburl ? n.dburl.toString() : '';
     this.mqtt_port = parseInt(n.mqtt_port);
     this.mqtt_ws_port = parseInt(n.mqtt_ws_port);
+    this.mqtt_username = n.username ? n.username.toString() : '';
+    this.mqtt_password = n.password ? n.password.toString() : '';
+
     var moscaSettings = {
         interfaces: []
     };
@@ -34,12 +37,23 @@ function MoscaInNode(n) {
 
     var node = this;
     node.log("Binding mosca mqtt server on port: " + this.port);
+
     var server = new mosca.Server(moscaSettings, function (err) {
         if (err) {
             err.msg = 'Error binding mosca mqtt server, cause: ' + err.toString();
             node.error(err);
         }
     });
+
+    if (this.mqtt_username && this.mqtt_password) {
+        var authenticate = function(client, username, password, callback) {
+            var authorized = (username == node.mqtt_username && password == node.mqtt_password);
+            if (authorized) client.user = username;
+            callback(null, authorized);
+        }
+
+        server.authenticate = authenticate
+    }
 
     server.on('clientConnected', function (client) {
         var msg = {

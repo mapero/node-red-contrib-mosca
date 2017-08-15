@@ -20,7 +20,7 @@
         <input type="text" id="node-input-mqtt_port" placeholder="leave blank to disable">
     </div>
     <div class="form-row">
-        <label for="node-input-mqtt_port"><i class="fa fa-globe"></i> MQTT WS port</label>
+        <label for="node-input-mqtt_ws_port"><i class="fa fa-globe"></i> MQTT WS port</label>
         <input type="text" id="node-input-mqtt_ws_port" placeholder="leave blank to disable">
     </div>
     <div class="form-row">
@@ -28,12 +28,20 @@
         <input type="text" id="node-input-dburl" placeholder="mongodb://localhost:27017/mqtt">
     </div>
     <div class="form-row">
+        <label for="node-input-username"><i class="fa fa-user"></i> Username</label>
+        <input type="text" id="node-input-username" placeholder="leave blank to disable">
+    </div>
+    <div class="form-row">
+        <label for="node-input-password"><i class="fa fa-key"></i> Password</label>
+        <input type="password" id="node-input-password" placeholder="leave blank to disable">
+    </div>
+    <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="msoca in">
+<script type="text/x-red" data-help-name="mosca in">
     <p>MQTT input node. Connects to a broker and subscribes to the specified topic. The topic may contain MQTT wildcards.</p>
     <p>Outputs an object called <b>msg</b> containing <b>msg.topic, msg.payload, msg.qos</b> and <b>msg.retain</b>.</p>
     <p><b>msg.payload</b> is a String.</p>
@@ -46,7 +54,9 @@
         	mqtt_port: {value:1883, validate:RED.validators.number()},
         	mqtt_ws_port: {value:8080, validate:RED.validators.number()},
             name: {value:""},
-            dburl: {value:"", required:false}
+            username: {value:"", required:false},
+            password: {value:"", required:false},
+            dburl: {value:"", required:false},
         },
         color:"#d8bfd8",
         inputs:0,
