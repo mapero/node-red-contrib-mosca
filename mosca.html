@@ -28,6 +28,14 @@
         <input type="text" id="node-input-dburl" placeholder="mongodb://localhost:27017/mqtt">
     </div>
     <div class="form-row">
+        <label for="node-input-username"><i class="fa fa-user"></i> Username</label>
+        <input type="text" id="node-input-username" placeholder="leave blank to disable">
+    </div>
+    <div class="form-row">
+        <label for="node-input-password"><i class="fa fa-key"></i> Password</label>
+        <input type="password" id="node-input-password" placeholder="leave blank to disable">
+    </div>
+    <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
@@ -46,6 +54,8 @@
         	mqtt_port: {value:1883, validate:RED.validators.number()},
         	mqtt_ws_port: {value:8080, validate:RED.validators.number()},
             name: {value:""},
+            username: {value:"", required:false},
+            password: {value:"", required:false},
             dburl: {value:"", required:false},
         },
         color:"#d8bfd8",
