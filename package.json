@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-mqtt-broker",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "MQTT Broker server on Node-RED",
   "dependencies": {
     "mosca": "0.28.1"
