@@ -6,7 +6,7 @@ Because this MQTT broker is implemented by Node.js, you can test MQTT-in and MQT
 ## Flows
 Once you just put this node on Node-RED and hit deploy button, MQTT Broker will run on your Node-RED.
 
-![flows](flows.png)
+![flows](https://raw.githubusercontent.com/zuhito/node-red-contrib-mqtt-broker/master/flows.png)
 
 You can set "localhost" in MQTT-in and MQTT-out properties as follows.
 
