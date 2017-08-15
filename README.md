@@ -10,7 +10,7 @@ Once you just put this node on Node-RED and hit deploy button, MQTT Broker will 
 
 You can set "localhost" in MQTT-in and MQTT-out properties as follows.
 
-![setting](setting.png)
+![setting](https://raw.githubusercontent.com/zuhito/node-red-contrib-mqtt-broker/master/setting.png)
 
 ## Install
 In the "manage palette", Node-RED users can install the node using "mqtt-broker" as the keyword.
