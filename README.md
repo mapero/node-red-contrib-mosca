@@ -1,7 +1,7 @@
 # node-red-contrib-mqtt-broker
 MQTT Broker server on Node-RED
 
-Because this MQTT broker is implemented by Node.js, you can test MQTT-in and MQTT-out nodes without MQTT environment like Mosquitto.
+Because this MQTT broker is implemented by Node.js, you can use MQTT-in and MQTT-out nodes without MQTT environment like Mosquitto.
 
 ## Flows
 Once you just put this node on Node-RED and hit deploy button, MQTT Broker will run on your Node-RED.
