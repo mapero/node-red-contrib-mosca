@@ -1,14 +1,14 @@
 {
   "name": "node-red-contrib-mosca",
-  "version": "0.2.0",
-  "description": "A mqtt broker as node",
+  "version": "0.3.0",
+  "description": "A mqtt broker as node, fork by Martin Doyle",
   "dependencies": {
-    "mosca": "2.2.0"
+    "mosca": "^2.7.0"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mapero/node-red-contrib-mosca.git"
+    "url": "https://github.com/martin-doyle/node-red-contrib-mosca.git"
   },
   "keywords": [
     "node-red",
