@@ -21,12 +21,24 @@ module.exports = function (RED) {
   function MoscaInNode(n) {
     RED.nodes.createNode(this, n);
     this.port = n.port;
+
     var moscaSettings = {
       port: this.port
     };
     var node = this;
+
     node.log('Binding mosca mqtt server on port: ' + this.port);
     var server = new mosca.Server(moscaSettings);
+
+    if (this.mqtt_username && this.mqtt_password) {
+        var authenticate = function(client, username, password, callback) {
+            var authorized = (username == node.mqtt_username && password == node.mqtt_password);
+            if (authorized) client.user = username;
+            callback(null, authorized);
+        }
+
+        server.authenticate = authenticate
+    }
 
     server.on('clientConnected', function (client) {
       var msg = {
