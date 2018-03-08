@@ -20,15 +20,29 @@ module.exports = function (RED) {
 
   function MoscaInNode(n) {
     RED.nodes.createNode(this, n);
-    this.port = n.port;
+    this.dburl = n.dburl ? n.dburl.toString() : '';
+    this.mqtt_port = parseInt(n.mqtt_port);
+    this.mqtt_ws_port = parseInt(n.mqtt_ws_port);
 
     var moscaSettings = {
-      port: this.port
+        interfaces: []
     };
+
+    if (this.mqtt_port)
+        moscaSettings.interfaces.push({type: "mqtt", port: this.mqtt_port});
+    if (this.mqtt_ws_port)
+        moscaSettings.interfaces.push({type: "http", port: this.mqtt_ws_port});
+    //TODO: read https://github.com/mcollina/mosca/blob/master/lib/server.js and add support of mqtts and wss
+
     var node = this;
 
     node.log('Binding mosca mqtt server on port: ' + this.port);
-    var server = new mosca.Server(moscaSettings);
+    var server = new mosca.Server(moscaSettings, function (err) {
+        if (err) {
+            err.msg = 'Error binding mosca mqtt server, cause: ' + err.toString();
+            node.error(err);
+        }
+    });
 
     if (this.mqtt_username && this.mqtt_password) {
         var authenticate = function(client, username, password, callback) {
@@ -93,6 +107,18 @@ module.exports = function (RED) {
       node.log('Unbinding mosca mqtt server from port: ' + this.port);
       server.close();
     });
+    
+    if (this.dburl) {
+        var onPersistenceReady = function () {
+            node.log('Persistence Ready');
+            persistence.wire(server);
+        }
+
+        var persistenceOpts = {
+            url: this.dburl
+        }
+        var persistence = mosca.persistence.Mongo(persistenceOpts, onPersistenceReady);
+    }
   }
 
   RED.nodes.registerType('mosca in', MoscaInNode);
