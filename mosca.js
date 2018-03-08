@@ -54,10 +54,26 @@ module.exports = function (RED) {
         server.authenticate = authenticate
     }
 
+    server.on('error', function (err) {
+      node.send(err);
+    });
+
+    server.on('clientConnecting', function (client) {
+      var msg = {
+        topic: 'clientConnecting',
+        payload: {
+          client: client
+        }
+      };
+      node.send(msg);
+    });
+    
     server.on('clientConnected', function (client) {
       var msg = {
         topic: 'clientConnected',
-        payload: client
+        payload: {
+          client: client
+        }
       };
       node.send(msg);
     });
@@ -65,7 +81,9 @@ module.exports = function (RED) {
     server.on('clientDisconnected', function (client) {
       var msg = {
         topic: 'clientDisconnected',
-        payload: client
+        payload: {
+          client: client
+        }
       };
       node.send(msg);
     });
