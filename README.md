@@ -5,6 +5,11 @@ Because this MQTT broker is implemented by Node.js, you can use MQTT-in and MQTT
 
 [![Build Status](https://travis-ci.org/martin-doyle/node-red-contrib-mosca.svg?branch=master)](https://travis-ci.org/martin-doyle/node-red-contrib-mosca)
 
+[![Dependency Status](https://david-dm.org/martin-doyle/node-red-contrib-mosca.svg)](https://david-dm.org/martin-doyle/node-red-contrib-mosca)
+[![devDependency Status](https://david-dm.org/martin-doyle/node-red-contrib-mosca/dev-status.svg)](https://david-dm.org/martin-doyle/node-red-contrib-mosca#info=devDependencies)
+
+[![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
+
 ## Flows
 Once you just put this node on Node-RED and hit deploy button, MQTT Broker will run on your Node-RED.
 
