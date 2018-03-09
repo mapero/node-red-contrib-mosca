@@ -39,8 +39,7 @@ module.exports = function (RED) {
     node.log('Binding mosca mqtt server on port: ' + this.mqtt_port);
     var server = new mosca.Server(moscaSettings, function (err) {
         if (err) {
-            err.msg = 'Error binding mosca mqtt server, cause: ' + err.toString();
-            node.error(err);
+            node.error('Error binding mosca mqtt server, cause: ' + err.toString());
         }
     });
 
@@ -55,7 +54,12 @@ module.exports = function (RED) {
     }
 
     server.on('error', function (err) {
-      node.send(err);
+      node.status({
+        fill: "red",
+        shape: "dot",
+        text: "disconnected"
+      });
+      node.error('Error starting mosca mqtt server, cause: ' + err.toString());
     });
 
     server.on('clientConnecting', function (client) {
