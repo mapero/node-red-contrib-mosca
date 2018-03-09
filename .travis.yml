@@ -11,7 +11,6 @@ addons:
     - gcc-4.8
 node_js:
   - "8"
-  - "6"
 before_script:
   - npm install -g node-red
   - npm link node-red
