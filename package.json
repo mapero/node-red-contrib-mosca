@@ -3,7 +3,7 @@
   "version": "0.2.4",
   "description": "MQTT Broker server on Node-RED",
   "dependencies": {
-    "mosca": "^2.7.0"
+    "mosca": "^2.8.0"
   },
   "license": "MIT",
   "repository": {
@@ -16,7 +16,7 @@
     "mqtt"
   ],
   "scripts": {
-    "test": "mocha test/**/*_spec.js"
+    "test": "npm link node-red & mocha test/**/*_spec.js"
   },
   "node-red": {
     "nodes": {

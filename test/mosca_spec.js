@@ -1,8 +1,6 @@
-var should = require('should');
 var helper = require('node-red-node-test-helper');
 var moscaNode = require('../mosca.js');
 var mqttNode = require('../node_modules/node-red/nodes/core/io/10-mqtt.js');
-var injectNode = require('../node_modules/node-red/nodes/core/core/20-inject.js');
 
 
 describe('MQTT Broker Node', function () {
@@ -36,7 +34,7 @@ describe('MQTT Broker Node', function () {
         var timestamp = new Date();
         timestamp.setSeconds(timestamp.getSeconds() + 1);
 
-        helper.load([injectNode, moscaNode, mqttNode], [{
+        helper.load([moscaNode, mqttNode], [{
                     id: 'n1',
                     type: 'mosca in',
                     mqtt_port: '1883',
@@ -64,7 +62,6 @@ describe('MQTT Broker Node', function () {
                 }
             ],
             function () {
-                var n1 = helper.getNode('n1');
                 var n2 = helper.getNode('n2');
                 n2.on('input', function (msg) {
                     msg.should.have.property('topic', 'clientConnected');
@@ -78,7 +75,7 @@ describe('MQTT Broker Node', function () {
         var timestamp = new Date();
         timestamp.setSeconds(timestamp.getSeconds() + 1);
 
-        helper.load([injectNode, moscaNode, mqttNode], [{
+        helper.load([moscaNode, mqttNode], [{
                     id: 'n1',
                     type: 'mosca in',
                     mqtt_port: '1883',
@@ -127,25 +124,23 @@ describe('MQTT Broker Node', function () {
                     name: 'Broker',
                     broker: 'localhost',
                     port: '1884'
-                }, 
+                }
             ],
             function () {
                 var i = 0;
-                var n1 = helper.getNode('n1');
                 var n2 = helper.getNode('n2');
                 n2.on('input', function (msg) {
                     msg.should.have.property('topic', 'clientConnected');
                     i++;
-                    if (i == 2) {
+                    if (i === 2) {
                         done();
                     }
                 });
-                var n11 = helper.getNode('n11');
                 var n12 = helper.getNode('n12');
                 n12.on('input', function (msg) {
                     msg.should.have.property('topic', 'clientConnected');
                     i++;
-                    if (i == 2) {
+                    if (i === 2) {
                         done();
                     }
                 });
