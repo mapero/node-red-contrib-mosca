@@ -21,9 +21,6 @@ describe('MQTT Broker Node', function () {
         }];
         helper.load(moscaNode, flow, function () {
             var n1 = helper.getNode('n1');
-            n1.on('error', function (err) {
-                console.log(err);
-            });
             n1.should.have.property('name', 'Mosca 1883');
             done();
         });
@@ -31,10 +28,8 @@ describe('MQTT Broker Node', function () {
     it('should connect an mqtt client', function (done) {
         this.timeout(10000); // have to wait for the inject with delay of two seconds
 
-        var timestamp = new Date();
-        timestamp.setSeconds(timestamp.getSeconds() + 1);
-
-        helper.load([moscaNode, mqttNode], [{
+        helper.load([moscaNode, mqttNode], [
+                {
                     id: 'n1',
                     type: 'mosca in',
                     mqtt_port: '1883',
@@ -72,10 +67,8 @@ describe('MQTT Broker Node', function () {
     it('should connect 2 mqtt clients on 2 servers', function (done) {
         this.timeout(10000); // have to wait for the inject with delay of two seconds
 
-        var timestamp = new Date();
-        timestamp.setSeconds(timestamp.getSeconds() + 1);
-
-        helper.load([moscaNode, mqttNode], [{
+        helper.load([moscaNode, mqttNode], [
+                {
                     id: 'n1',
                     type: 'mosca in',
                     mqtt_port: '1883',
@@ -144,6 +137,32 @@ describe('MQTT Broker Node', function () {
                         done();
                     }
                 });
+            });
+    });
+    it('should not throw an exception with 2 servers on the same port', function (done) {
+        this.timeout(10000); // have to wait for the inject with delay of two seconds
+
+        helper.load([moscaNode, mqttNode], [
+                {
+                    id: 'n1',
+                    type: 'mosca in',
+                    mqtt_port: '1883',
+                    mqtt_ws_port: '8080',
+                    name: 'Mosca 1883'
+                }, {
+                    id: 'n11',
+                    type: 'mosca in',
+                    mqtt_port: '1883',
+                    mqtt_ws_port: '8081',
+                    name: 'Mosca 1883 2'
+                }
+            ],
+            function () {
+                var n1 = helper.getNode('n1');
+                n1.should.have.property('name', 'Mosca 1883');
+                var n11 = helper.getNode('n11');
+                n11.should.have.property('name', 'Mosca 1883 2');
+                done();
             });
     });
 });
