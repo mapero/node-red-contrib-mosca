@@ -42,9 +42,7 @@
 </script>
 
 <script type="text/x-red" data-help-name="mosca in">
-    <p>MQTT input node. Connects to a broker and subscribes to the specified topic. The topic may contain MQTT wildcards.</p>
-    <p>Outputs an object called <b>msg</b> containing <b>msg.topic, msg.payload, msg.qos</b> and <b>msg.retain</b>.</p>
-    <p><b>msg.payload</b> is a String.</p>
+    <p>MQTT broker. Because this MQTT broker is implemented by Node.js, you can use MQTT-in and MQTT-out nodes without an external broker like Mosquitto.</p>
 </script>
 
 <script type="text/javascript">
