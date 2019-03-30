@@ -37,6 +37,7 @@ module.exports = function (RED) {
     var node = this;
 
     node.log('Binding mosca mqtt server on port: ' + this.mqtt_port);
+    console.log('moscaSettings: ' + JSON.stringify(moscaSettings));
     var server = new mosca.Server(moscaSettings, function (err) {
         if (err) {
             node.error('Error binding mosca mqtt server, cause: ' + err.toString());

@@ -1,12 +1,11 @@
+var should = require("should");
 var helper = require('node-red-node-test-helper');
 var moscaNode = require('../mosca.js');
-var mqttNode = require('../node_modules/node-red/nodes/core/io/10-mqtt.js');
+var mqttNode = require('../node_modules/@node-red/nodes/core/io/10-mqtt.js');
 
+helper.init(require.resolve('node-red'));
 
 describe('MQTT Broker Node', function () {
-    before(function (done) {
-        helper.startServer(done);
-    });
     afterEach(function () {
         helper.unload();
     });
@@ -139,7 +138,7 @@ describe('MQTT Broker Node', function () {
                 });
             });
     });
-    it('should not throw an exception with 2 servers on the same port', function (done) {
+    it('should not throw an exception with 2 servers on the same mqtt port', function (done) {
         this.timeout(10000); // have to wait for the inject with delay of two seconds
 
         helper.load([moscaNode, mqttNode], [
@@ -162,6 +161,32 @@ describe('MQTT Broker Node', function () {
                 n1.should.have.property('name', 'Mosca 1883');
                 var n11 = helper.getNode('n11');
                 n11.should.have.property('name', 'Mosca 1883 2');
+                done();
+            });
+    });
+    it('should not throw an exception with 2 servers on the same ws port', function (done) {
+        this.timeout(10000); // have to wait for the inject with delay of two seconds
+
+        helper.load([moscaNode, mqttNode], [
+                {
+                    id: 'n1',
+                    type: 'mosca in',
+                    mqtt_port: '1883',
+                    name: 'Mosca 1883',
+                    mqtt_ws_port: '8080'
+                }, {
+                    id: 'n11',
+                    type: 'mosca in',
+                    mqtt_port: '1884',
+                    name: 'Mosca 1884',
+                    mqtt_ws_port: '8080'
+                }
+            ],
+            function () {
+                var n1 = helper.getNode('n1');
+                n1.should.have.property('name', 'Mosca 1883');
+                var n11 = helper.getNode('n11');
+                n11.should.have.property('name', 'Mosca 1884');
                 done();
             });
     });
