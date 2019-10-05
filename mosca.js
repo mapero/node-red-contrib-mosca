@@ -23,6 +23,9 @@ module.exports = function (RED) {
     this.dburl = n.dburl ? n.dburl.toString() : '';
     this.mqtt_port = parseInt(n.mqtt_port);
     this.mqtt_ws_port = parseInt(n.mqtt_ws_port);
+    
+    this.mqtt_username = n.username;
+    this.mqtt_password = n.password;
 
     var moscaSettings = {
         interfaces: []
