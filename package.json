@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "description": "A mqtt broker as node",
   "dependencies": {
-    "mosca": "0.28.1"
+    "mosca": "2.8.3"
   },
   "license": "MIT",
   "repository": {
