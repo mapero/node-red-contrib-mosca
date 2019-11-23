@@ -1,7 +1,10 @@
 var should = require("should");
 var helper = require('node-red-node-test-helper');
 var moscaNode = require('../mosca.js');
-var mqttNode = require('../node_modules/@node-red/nodes/core/io/10-mqtt.js');
+// Node-Red Version 0.20
+//var mqttNode = require('../node_modules/@node-red/nodes/core/io/10-mqtt.js');
+// Node-Red Version 1.0
+var mqttNode = require('../node_modules/node-red/node_modules/@node-red/nodes/core/network/10-mqtt.js');
 
 helper.init(require.resolve('node-red'));
 
